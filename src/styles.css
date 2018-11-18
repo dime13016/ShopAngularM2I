@@ -1,3 +1,14 @@
 body {
-    padding-top:5em;
+
+}
+#top {
+    background: #ccc;
+    font-size: 14px;
+}
+#top ul {
+    list-style: none;
+    margin: 0;
+}
+#top a {
+    color: #000;
 }

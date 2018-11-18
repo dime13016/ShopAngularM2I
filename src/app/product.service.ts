@@ -5,7 +5,7 @@ import { Product } from './model/Product';
 @Injectable({
   providedIn: 'root'
 })
-export class PersonneService {
+export class ProductService {
 
   url:string = "http://localhost:8080/JerseyMaven/webapi/personnes/"
 

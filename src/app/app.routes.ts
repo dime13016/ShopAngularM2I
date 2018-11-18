@@ -6,13 +6,15 @@ import { CartComponent } from "./cart/cart.component";
 import { OrderComponent } from "./order/order.component";
 import { OrdersComponent } from "./orders/orders.component";
 import { SearchComponent } from "./search/search.component";
+import {AuthGuard} from "./app.guard";
 
 export const routes:Routes = [
     {path: "", component: HomeComponent},
+    {path: "login", component: HomeComponent},
     {path: "product/:id", component: ProductComponent},
     {path: "category/:id", component: CategoryComponent},
     {path: "search/:text", component: SearchComponent},
     {path: "cart", component: CartComponent},
-    {path: "order/:id", component: OrderComponent},
-    {path: "orders", component: OrdersComponent}
+    {path: "order/:id", component: OrderComponent, canActivate: [AuthGuard]},
+    {path: "orders", component: OrdersComponent, canActivate: [AuthGuard]}
 ];

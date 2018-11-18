@@ -13,6 +13,7 @@ import { CartComponent } from './cart/cart.component';
 import { SearchComponent } from './search/search.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderComponent } from './order/order.component';
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { OrderComponent } from './order/order.component';
     BrowserModule, 
     RouterModule.forRoot(routes),
     FormsModule,
-    HttpClientModule  
+    HttpClientModule  ,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
