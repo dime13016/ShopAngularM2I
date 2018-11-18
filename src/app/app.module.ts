@@ -14,6 +14,12 @@ import { SearchComponent } from './search/search.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderComponent } from './order/order.component';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { AdminComponent } from './admin/admin.component';
+import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
+import { AdminCategoriesComponent } from './admin/admin-categories/admin-categories.component';
+import { AdminProductComponent } from './admin/admin-product/admin-product.component';
+import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +30,13 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     CartComponent,
     SearchComponent,
     OrdersComponent,
-    OrderComponent
+    OrderComponent,
+    AdminComponent,
+    AdminCategoryComponent,
+    AdminCategoriesComponent,
+    AdminProductComponent,
+    AdminProductsComponent,
+    AdminUsersComponent
   ],
   imports: [
     BrowserModule, 
