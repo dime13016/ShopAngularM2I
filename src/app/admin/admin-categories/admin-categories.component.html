@@ -1,3 +1,54 @@
-<p>
-  admin-categories works!
-</p>
+<div class="row">
+    <div class="col-md-6">
+        <h1>Liste des categories</h1>
+        <hr>
+        <table class="table table-striped" [hidden]="!categories.length">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nom</th>
+                <th scope="col">&nbsp;</th>
+                <th scope="col">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let c of categories; let i = index">
+                <th scope="row">{{ c.id }}</th>
+                <td>{{ c.name }}</td>
+                <td><button (click)="removeCategory(c.id)" class="btn btn-danger">Supprimer</button></td>
+                <td><button [routerLink]="['/admin/category', c.id]" class="btn btn-info">Détails</button></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="alert alert-danger" [hidden]="categories.length">
+        Aucune catégorie trouvée.
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h1>Ajouter une catégorie</h1>
+        <form #addCategoryForm=ngForm (ngSubmit)="createCategory()">
+            <div class="form-group">
+                <label for="nameCategory">Nom</label>
+                <input [(ngModel)]="newCategory.name" type="text" class="form-control"
+                        id="nameCategory" name="nameCategory" placeholder="Nom de la catégorie" required>
+                
+                <br>
+                <div>
+                    <h6>Catégorie mère</h6>
+                    <div>
+                        <input checked="checked" type="radio" id="parent-null" (change)="setNewCategoryParent(null)" name="parent" value=""> 
+                        &nbsp;
+                        <label for="parent-null">Aucune</label>
+                    </div>
+                    <div *ngFor="let c of categories; let i = index">
+                        <input type="radio" id="parent-{{ c.name }}" (change)="setNewCategoryParent(c)" name="parent" (value)="c"> 
+                        &nbsp;
+                        <label for="parent-{{ c.name }}">{{ c.name }}</label>
+                    </div>
+                </div>
+                
+            </div>
+            <button [disabled]="!addCategoryForm.valid" type="submit" class="btn btn-primary">Créer</button>
+        </form>
+    </div>
+</div>

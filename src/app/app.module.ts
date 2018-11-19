@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
@@ -20,6 +20,8 @@ import { AdminCategoriesComponent } from './admin/admin-categories/admin-categor
 import { AdminProductComponent } from './admin/admin-product/admin-product.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+import { BasicAuthInterceptor } from './app.interceptor';
+import { ErrorInterceptor } from './app.interceptor.error';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,11 @@ import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
     HttpClientModule  ,
     NgbModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true }
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,28 @@
-<p>
-  admin-category works!
-</p>
+<div class="row">
+  <div class="col-md-12">
+      <h1>Ajouter une catégorie</h1>
+      <form #addCategoryForm=ngForm (ngSubmit)="updateCategory()">
+          <div class="form-group">
+              <label for="nameCategory">Nom</label>
+              <input [(ngModel)]="category.name" type="text" class="form-control"
+                      id="nameCategory" name="nameCategory" placeholder="Nom de la catégorie" required>
+              
+              <br>
+              <div>
+                  <h6>Catégorie mère</h6>
+                  <div>
+                      <input [checked]="category.parent == null" type="radio" id="parent-null" (change)="setNewCategoryParent(null)" name="parent" value=""> 
+                      &nbsp;
+                      <label for="parent-null">Aucune</label>
+                  </div>
+                  <div *ngFor="let c of categories; let i = index">
+                      <input [checked]="isParent(c.id)" type="radio" id="parent-{{ c.name }}" (change)="setNewCategoryParent(c)" name="parent" (value)="c"> 
+                      &nbsp;
+                      <label for="parent-{{ c.name }}">{{ c.name }}</label>
+                  </div>
+              </div>
+          </div>
+          <button [disabled]="!addCategoryForm.valid" type="submit" class="btn btn-primary">Modifier</button>
+      </form>
+  </div>
+</div>

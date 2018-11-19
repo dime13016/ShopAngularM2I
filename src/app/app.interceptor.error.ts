@@ -14,7 +14,9 @@ export class ErrorInterceptor implements HttpInterceptor {
             if (err.status === 401) {
                 this.authenticationService.logout();
                 location.reload(true);
+                console.log("error 401")
             } else if(err.status === 403) {
+                console.log("error 403")
                 this.router.navigate(['/']);
             }
 
