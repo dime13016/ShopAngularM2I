@@ -1,3 +1,64 @@
-<p>
-  admin-products works!
-</p>
+<div class="row">
+  <div class="col-md-6">
+    <h1>Liste des produits</h1>
+    <hr>
+    <table class="table table-striped" [hidden]="!categories.length">
+      <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prix</th>
+        <th scope="col">Quantité</th>
+        <th scope="col">&nbsp;</th>
+        <th scope="col">&nbsp;</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let p of products; let i = index">
+        <th scope="row">{{ p.id }}</th>
+        <td>{{ p.name }}</td>
+        <td>{{ p.price }}</td>
+        <td>{{ p.quantity }}</td>
+        <td><button (click)="removeProduct(p.id)" class="btn btn-danger">Supprimer</button></td>
+        <td><button [routerLink]="['/admin/product', p.id]" class="btn btn-info">Détails</button></td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="alert alert-danger" [hidden]="products.length">
+      Aucun produit trouvé.
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h1>Ajouter un produit</h1>
+    <form #addProductForm=ngForm (ngSubmit)="createProduct()">
+      <div class="form-group">
+        <label for="nameProduct">Nom</label>
+        <input [(ngModel)]="newProduct.name" type="text" class="form-control"
+               id="nameProduct" name="nameProduct" placeholder="Nom du produit" required>
+      </div>
+      <div class="form-group">
+        <label for="priceProduct">Prix</label>
+        <input [(ngModel)]="newProduct.price" type="number" class="form-control"
+               id="priceProduct" name="priceProduct" placeholder="Prix du produit" required>
+      </div>
+      <div class="form-group">
+        <label for="quantityProduct">Quantité</label>
+        <input [(ngModel)]="newProduct.quantity" type="number" class="form-control"
+               id="quantityProduct" name="quantityProduct" placeholder="Quantité du produit" required>
+      </div>
+      <div class="form-group">
+        <br>
+        <div>
+          <h6>Catégories</h6>
+          <div *ngFor="let c of categories; let i = index">
+            <input type="checkbox" id="cat-{{ c.name }}" (change)="addCategoryToProduct(c)" (value)="c">
+            &nbsp;
+            <label for="cat-{{ c.name }}">{{ c.name }}</label>
+          </div>
+        </div>
+      </div>
+
+      <button [disabled]="!addProductForm.valid" type="submit" class="btn btn-primary">Créer</button>
+    </form>
+  </div>
+</div>

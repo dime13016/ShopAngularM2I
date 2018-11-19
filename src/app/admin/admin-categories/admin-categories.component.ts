@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../../model/Category';
 import { CategoryService } from '../../category.service';
-import { AuthenticationService } from '../../authentication.service';
 
 @Component({
   selector: 'app-admin-categories',

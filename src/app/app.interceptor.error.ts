@@ -16,7 +16,6 @@ export class ErrorInterceptor implements HttpInterceptor {
                 location.reload(true);
                 console.log("error 401")
             } else if(err.status === 403) {
-                console.log("error 403")
                 this.router.navigate(['/']);
             }
 

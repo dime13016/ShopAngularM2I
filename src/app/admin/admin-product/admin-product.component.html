@@ -1,3 +1,35 @@
-<p>
-  admin-product works!
-</p>
+<div class="row">
+  <div class="col-md-6">
+    <h1>Modifier le produit</h1>
+    <form #updateProductForm=ngForm (ngSubmit)="updateProduct()">
+      <div class="form-group">
+        <label for="nameProduct">Nom</label>
+        <input [(ngModel)]="product.name" type="text" class="form-control"
+               id="nameProduct" name="nameProduct" placeholder="Nom du produit" required>
+      </div>
+      <div class="form-group">
+        <label for="priceProduct">Prix</label>
+        <input [(ngModel)]="product.price" type="number" class="form-control"
+               id="priceProduct" name="priceProduct" placeholder="Prix du produit" required>
+      </div>
+      <div class="form-group">
+        <label for="quantityProduct">Quantité</label>
+        <input [(ngModel)]="product.quantity" type="number" class="form-control"
+               id="quantityProduct" name="quantityProduct" placeholder="Quantité du produit" required>
+      </div>
+      <div class="form-group">
+        <br>
+        <div>
+          <h6>Catégories</h6>
+          <div *ngFor="let c of categories; let i = index">
+            <input type="checkbox" id="cat-{{ c.name }}" (change)="addCategoryToProduct(c)" (value)="c">
+            &nbsp;
+            <label for="cat-{{ c.name }}">{{ c.name }}</label>
+          </div>
+        </div>
+      </div>
+
+      <button [disabled]="!updateProductForm.valid" type="submit" class="btn btn-primary">Modifier</button>
+    </form>
+  </div>
+</div>

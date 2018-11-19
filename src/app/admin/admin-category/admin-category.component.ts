@@ -13,9 +13,7 @@ export class AdminCategoryComponent implements OnInit {
   category:Category = {name:"dazd", parent:null};
   categories:Category[] = new Array<Category>();
 
-  constructor(private categoryService:CategoryService, private route:ActivatedRoute) { 
-    console.log(this.category.name)
-    
+  constructor(private categoryService:CategoryService, private route:ActivatedRoute) {
   }
 
   ngOnInit() {

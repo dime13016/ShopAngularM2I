@@ -1,5 +1,8 @@
+import {Category} from "./Category";
 export interface Product {
-    num?:number;
-    nom:string;
-    prenom:string;
+    id?:number;
+    name:string;
+    price:number;
+    quantity:number;
+    categories?:Category[];
 }
