@@ -1,5 +1,4 @@
 export interface Cart {
-    num?:number;
-    nom:string;
-    prenom:string;
+    id?:number;
+    code?:string;
 }
