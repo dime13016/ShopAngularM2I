@@ -12,3 +12,13 @@ body {
 #top a {
     color: #000;
 }
+main.container {
+    padding-top: 15px;
+}
+.card {
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+}

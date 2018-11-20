@@ -1,3 +1,21 @@
-<p>
-  category works!
-</p>
+<div class="row">
+  <div class="col">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{ category.name }}</li>
+        </ol>
+      </nav>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3" *ngFor="let p of category.products; let i = index">
+    <div [routerLink]="['/product', p.id]" class="card">
+      <img src="https://fakeimg.pl/200/" alt="prod_img" />
+      <div class="card-body">
+        <h5 class="card-title">{{ p.name }}</h5>
+      </div>
+    </div>
+  </div>
+</div>

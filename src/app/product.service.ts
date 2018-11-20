@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from './model/Product';
+import { Category } from './model/Category';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,10 @@ export class ProductService {
 
   getAllProducts() {
     return this.http.get<Array<Product>>(this.apiUrl+"/products");
+  }
+
+  getProductsbyCategory(catId:number) {
+    return this.http.get<Array<Product>>(this.apiUrl+"/categories/"+catId+"/products");
   }
 
   getProductById(id:number) {

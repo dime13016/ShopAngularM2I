@@ -1,1 +1,27 @@
-<p>Product</p>
+<div class="row">
+    <div class="col">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <img src="https://fakeimg.pl/400/300" alt="prod_img" />
+    </div>
+    <div class="col-md-8">
+        <h1>{{product.name}}</h1>
+        <span *ngFor="let c of product.categories;" class="badge badge-secondary">
+            {{ c.name}}
+        </span>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint inventore dolore modi totam quisquam eligendi quo voluptates sed ratione, quidem odit repellat, et veritatis ipsam! Velit numquam animi quia magnam.
+        </p>
+        <button class="btn btn-primary" (click)="addToCart()">
+            Ajouter au panier
+        </button>
+    </div>
+</div>
