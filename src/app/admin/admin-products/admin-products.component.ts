@@ -19,13 +19,11 @@ export class AdminProductsComponent implements OnInit {
     this.categoryService.getAllCategories().subscribe(
         categories => {
           this.categories = categories;
-          console.log(categories)
         }
     );
     this.productService.getAllProducts().subscribe(
         products => {
           this.products = products;
-          console.log(products)
         }
     );
   }
@@ -36,8 +34,7 @@ export class AdminProductsComponent implements OnInit {
   createProduct() {
     this.productService.add(this.newProduct).subscribe(
         product => {
-          this.products.push(<Product>product)
-          console.log(product);
+          this.products.push(<Product>product);
         }
     )
   }

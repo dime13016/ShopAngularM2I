@@ -22,7 +22,7 @@
         <div>
           <h6>Catégories</h6>
           <div *ngFor="let c of categories; let i = index">
-            <input type="checkbox" id="cat-{{ c.name }}" (change)="addCategoryToProduct(c)" (value)="c">
+            <input [checked]="containsCategory(c)" type="checkbox" id="cat-{{ c.name }}" data-md-icheck (change)="addOrRemoveCategoryToProduct($event, c)" (value)="c">
             &nbsp;
             <label for="cat-{{ c.name }}">{{ c.name }}</label>
           </div>

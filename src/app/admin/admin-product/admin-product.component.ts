@@ -42,8 +42,20 @@ export class AdminProductComponent implements OnInit {
     )
   }
 
-  addCategoryToProduct(c:Category) {
-    this.product.categories.push(c);
+  addOrRemoveCategoryToProduct(e, c:Category) {
+    if(e.target.checked) {
+      this.product.categories.push(c);
+    } else {
+      this.product.categories.splice(this.getCategoryIndexById(c.id), 1);
+    }
+  }
+
+  containsCategory(c:Category) {
+    return this.product.categories.find(x => x.id == c.id) != null;
+  }
+
+  getCategoryIndexById(id:number) {
+    return this.product.categories.indexOf(this.product.categories.find(x => x.id == id));
   }
 
 }
