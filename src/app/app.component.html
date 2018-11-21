@@ -2,10 +2,12 @@
     <div class="text-right">
         <ul *ngIf="!currentUser">
             <li><a (click)="openModal(loginModal)">Se connecter / S'inscrire</a></li>
+            <li><a [routerLink]="['/cart']">Panier &nbsp;<span class="badge badge-primary">{{cartQty}}</span></a></li>
         </ul>
         <ul *ngIf="currentUser">
             <li>Bonjour, <a href="#">{{ currentUser.userName }}</a></li>
             <li><a (click)="logout()">Se déconnecter</a></li>
+            <li><a [routerLink]="['/cart']">Panier &nbsp;<span class="badge badge-primary">{{cartQty}}</span></a></li>
         </ul>
     </div>
 
@@ -97,6 +99,5 @@
         </div>
     </div>
 </ng-template>
-
 
 

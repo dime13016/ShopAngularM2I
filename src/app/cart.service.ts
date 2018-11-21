@@ -2,22 +2,42 @@ import { Injectable } from '@angular/core';
 import { Cart } from './model/Cart';
 import { HttpClient } from '@angular/common/http';
 import { CartItem } from './model/CartItem';
+import { map } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
+  cart:Cart;
+  cartQty:Subject<number>;
+  cartQtyObservable:Observable<number>;
+
   apiUrl:string = "http://localhost:8080";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) { 
+    this.cartQty = new Subject<number>();
+    this.cartQty.next(0);
+    this.cartQtyObservable = this.cartQty.asObservable();
+  }
 
   getCart() {
-    if(localStorage.getItem("cart_code")) {
-      let cartId = localStorage.getItem("cart_code");
-      return this.http.get<Cart>(this.apiUrl+"/cart/"+cartId);
+    let cartCode = localStorage.getItem("cartCode");
+    return this.http.post<Cart>(this.apiUrl+"/cart/",{code: cartCode});
+  }
+
+  setCart(cart:Cart) {
+    this.cart = cart;
+    if(!cart) {
+      localStorage.removeItem("cartCode");
+      this.cartQty.next(0);
     } else {
-      return null;
+      let qty = 0;
+      for(let i=0; i<cart.cartItems.length; i++) {
+        qty += cart.cartItems[i].quantity;
+      }
+      this.cartQty.next(qty);
     }
   }
 
@@ -32,6 +52,12 @@ export class CartService {
       quantity : cartItem.quantity,
       price : cartItem.price
     };
-    return this.http.post(this.apiUrl+"/cartItem",item);
+    return this.http.post(this.apiUrl+"/cartItem",item).pipe(map(
+        data => {
+            localStorage.setItem('cartCode', data['cart_code']);
+            return data;
+        }
+    ));
   }
+
 }

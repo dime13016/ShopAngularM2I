@@ -22,3 +22,10 @@ main.container {
 img {
     max-width: 100%;
 }
+#top ul li {
+    display: inline-block;
+    margin-left: 15px;
+}
+#top ul li a {
+    cursor: pointer;
+}

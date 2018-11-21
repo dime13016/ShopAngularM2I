@@ -1,3 +1,31 @@
-<p>
-  cart works!
-</p>
+<div class="table-responsive" [hidden]="!cart.cartItems">
+  <table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Produit</th>
+            <th scope="col">Prix unitaire</th>
+            <th scope="col">Quantité</th>
+            <th scope="col" class="text-right">Prix</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of cart.cartItems;">
+            <td><b><span class="codeA">{{item.product.id}}</span></b></td>
+            <td>{{item.product.name}}</td>
+            <td><span class="prixUnit">{{item.price}}</span> &euro;</td>
+            <td>{{item.quantity}}</td>
+            <td class="text-right"><span class="productPriceTotal">{{item.product.price * item.quantity}}</span> &euro;</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><strong>Total</strong></td>
+            <td class="text-right"><strong><span class="priceTotal">{{ totalPrice }}</span></strong>&euro;</td>
+        </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-primary" (click)="makeOrder()">Commander</button>
+</div>
+<div class="alert alert-danger" [hidden]="cart.cartItems">Votre panier est vide</div>
