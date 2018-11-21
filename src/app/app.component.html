@@ -7,7 +7,7 @@
         <ul *ngIf="currentUser">
             <li>Bonjour, <a href="#">{{ currentUser.userName }}</a></li>
             <li><a (click)="logout()">Se déconnecter</a></li>
-            <li><a [routerLink]="['/cart']">Panier &nbsp;<span class="badge badge-primary">{{cartQty}}</span></a></li>
+            <li><a [routerLink]="['/cart']">Panier</a>&nbsp;<span class="badge badge-warning">{{cartQty}}</span></li>
         </ul>
     </div>
 
@@ -37,10 +37,6 @@
         </div>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Rechercher" aria-label="Rechercher">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
-    </form>
   </div>
 </nav>
 

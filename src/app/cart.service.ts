@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { CartItem } from './model/CartItem';
 import { map } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
+import {Product} from "./model/Product";
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,14 @@ export class CartService {
   getCart() {
     let cartCode = localStorage.getItem("cartCode");
     return this.http.post<Cart>(this.apiUrl+"/cart/",{code: cartCode});
+  }
+
+  deleteProduct(cart:Cart, product:Product) {
+    console.log("lala")
+    return this.http.post(this.apiUrl+"/cartItem/delete",{
+      cart_code: cart.code,
+      product_id: product.id
+    });
   }
 
   setCart(cart:Cart) {

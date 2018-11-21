@@ -2,15 +2,19 @@ body {
 
 }
 #top {
-    background: #ccc;
+    background: #45B4E7;
     font-size: 14px;
+    color: #fff;
+    font-weight: 100;
 }
 #top ul {
     list-style: none;
     margin: 0;
 }
 #top a {
-    color: #000;
+    color: #fff;
+    font-weight: 100;
+    text-decoration: underline;
 }
 main.container {
     padding-top: 15px;
@@ -28,4 +32,8 @@ img {
 }
 #top ul li a {
     cursor: pointer;
+}
+.cart-qty {
+    width: 40px;
+    margin-right: 10px;
 }
