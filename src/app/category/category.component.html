@@ -2,14 +2,14 @@
   <div class="col">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+          <li class="breadcrumb-item"><a [routerLink]="['/']">Accueil</a></li>
           <li class="breadcrumb-item active" aria-current="page">{{ category.name }}</li>
         </ol>
       </nav>
   </div>
 </div>
 
-<div class="row">
+<div class="row" [hidden]="!category.products">
   <div class="col-md-3" *ngFor="let p of category.products; let i = index">
     <div [routerLink]="['/product', p.id]" class="card">
       <img src="https://fakeimg.pl/200/" alt="prod_img" />
@@ -18,4 +18,7 @@
       </div>
     </div>
   </div>
+</div>
+<div class="alert alert-danger" [hidden]="category.products.length">
+  Aucun produit trouvé
 </div>

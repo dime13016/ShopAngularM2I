@@ -7,6 +7,8 @@ import { Cart } from './model/Cart';
 import { CartService } from './cart.service';
 import { Product } from './model/Product';
 import { CartItem } from './model/CartItem';
+import { CategoryService } from './category.service';
+import { Category } from './model/Category';
 
 @Component({
   selector: 'app-root',
@@ -15,13 +17,20 @@ import { CartItem } from './model/CartItem';
 })
 export class AppComponent {
   userLogin:User = {userName: "", password:""};
+  categories:Category[] = [];
   currentUser:User;
   cart:Cart;
   cartQty:number
 
   constructor(private authenticationService:AuthenticationService, private modalService:NgbModal,
-              private router: Router, private cartService:CartService) {
+              private router: Router, private cartService:CartService, private categoryService:CategoryService) {
+    
     this.currentUser = authenticationService.getCurrentUser();
+    this.categoryService.getAllCategories().subscribe(
+      categories => {
+        this.categories = categories;
+      }
+    )
     this.cartService.getCart().subscribe(
       cart => {
         this.cartService.setCart(cart);
@@ -34,7 +43,6 @@ export class AppComponent {
         this.cartQty = cartQty;
       }
     )
-
   }
 
   login() {

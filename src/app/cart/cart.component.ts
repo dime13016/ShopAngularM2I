@@ -5,6 +5,7 @@ import { OrderService } from '../order.service';
 import {CartItem} from "../model/CartItem";
 import {AuthenticationService} from "../authentication.service";
 import {User} from "../model/User";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +17,7 @@ export class CartComponent implements OnInit {
     totalPrice:number = 0;
     user:User;
     constructor(private cartService:CartService, private orderService:OrderService,
-                private authenticationService:AuthenticationService) {
+                private authenticationService:AuthenticationService, private router:Router) {
         this.cartService.getCart().subscribe(
             cart => {
                 if(cart) {
@@ -37,7 +38,7 @@ export class CartComponent implements OnInit {
             this.totalPrice = 0;
             this.cart = {cartItems: []};
             this.cartService.setCart(null);
-            console.log(order);
+            this.router.navigate(['/orders']);
           }
         );
     }

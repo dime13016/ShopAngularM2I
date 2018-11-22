@@ -1,3 +1,13 @@
+<div class="row">
+    <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a [routerLink]="['/']">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Panier</li>
+          </ol>
+        </nav>
+    </div>
+</div>
 <div class="table-responsive" [hidden]="!cart.cartItems.length">
   <table class="table table-striped">
     <thead>

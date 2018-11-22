@@ -1,3 +1,31 @@
-<p>
-  orders works!
-</p>
+<div class="row">
+    <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a [routerLink]="['/']">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Commandes</li>
+          </ol>
+        </nav>
+    </div>
+</div>
+<div class="table-responsive" [hidden]="!orders.length">
+  <table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let o of orders;">
+            <td><b><span>{{o.id}}</span></b></td>
+            <td>{{o.date}}</td>
+            <td>
+                <button class="btn btn-info" [routerLink]="['/order', o.id]">Voir la commande</button>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+<div class="alert alert-danger" [hidden]="orders.length">Aucune commande trouvée</div>

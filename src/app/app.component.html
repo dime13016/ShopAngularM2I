@@ -5,7 +5,7 @@
             <li><a [routerLink]="['/cart']">Panier &nbsp;<span class="badge badge-primary">{{cartQty}}</span></a></li>
         </ul>
         <ul *ngIf="currentUser">
-            <li>Bonjour, <a href="#">{{ currentUser.userName }}</a></li>
+            <li>Bonjour, <a [routerLink]="['/orders']">{{ currentUser.userName }}</a></li>
             <li><a (click)="logout()">Se déconnecter</a></li>
             <li><a [routerLink]="['/cart']">Panier</a>&nbsp;<span class="badge badge-warning">{{cartQty}}</span></li>
         </ul>
@@ -20,22 +20,12 @@
 
   <div class="navbar-collapse collapse" id="navbarsExampleDefault" style="">
     <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-            <a class="nav-link" href="#">Accueil</a>
-        </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Vestes</a>
+            <a class="nav-link" [routerLink]="['/']">Accueil</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Pantalons</a>
+        <li class="nav-item" *ngFor="let c of categories; let i = index">
+            <a class="nav-link" [routerLink]="['/category', c.id]">{{ c.name }}</a>
         </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Accessoires</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="#">Montres</a>
-          <a class="dropdown-item" href="#">Sacs</a>
-        </div>
-      </li>
     </ul>
   </div>
 </nav>

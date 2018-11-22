@@ -11,7 +11,8 @@ import { Route, Router, ActivatedRoute } from '@angular/router';
 })
 export class CategoryComponent implements OnInit {
 
-  category:Category = {name: "", parent: null, products: null};
+  category:Category = {name: "", parent: null, products: []};
+  
   constructor(private categoryService:CategoryService, private productService:ProductService,
               private route:ActivatedRoute) { }
 
@@ -21,11 +22,14 @@ export class CategoryComponent implements OnInit {
       this.categoryService.getById(currentCatId).subscribe(
         category => {
           if(category.id) {
-            this.category = category;
+            this.category.id = category.id;
+            this.category.name = category.name;
             this.productService.getProductsbyCategory(category.id).subscribe(
               products => {
-                this.category.products = products;
-                console.log(this.category);
+                if(products) {
+                  this.category.products = products;
+                }
+                
               }
             );
           } 

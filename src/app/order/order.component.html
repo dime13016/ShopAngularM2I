@@ -1,3 +1,35 @@
-<p>
-  order works!
-</p>
+<div class="row">
+    <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a [routerLink]="['/']">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Commande</li>
+          </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="table-responsive" [hidden]="!order.cart.cartItems.length">
+    <table class="table table-striped">
+      <thead>
+          <tr>
+              <th scope="col">#</th>
+              <th scope="col">Produit</th>
+              <th scope="col">Prix unitaire</th>
+              <th scope="col">Quantité</th>
+              <th scope="col" class="text-right">Prix</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let item of order.cart.cartItems;">
+              <td><b><span class="codeA">{{item.product.id}}</span></b></td>
+              <td>{{item.product.name}}</td>
+              <td><span class="prixUnit">{{item.price}}</span> &euro;</td>
+              <td>
+                {{item.quantity}}    
+              </td>
+              <td class="text-right"><span>{{item.product.price * item.quantity}}</span> &euro;</td>
+          </tr>
+      </tbody>
+    </table>
+</div>

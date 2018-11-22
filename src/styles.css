@@ -2,10 +2,11 @@ body {
 
 }
 #top {
-    background: #45B4E7;
+    background: #333;
     font-size: 14px;
     color: #fff;
-    font-weight: 100;
+    font-weight: bold;
+    padding: 5px;
 }
 #top ul {
     list-style: none;
@@ -13,7 +14,7 @@ body {
 }
 #top a {
     color: #fff;
-    font-weight: 100;
+    font-weight: bold;
     text-decoration: underline;
 }
 main.container {
